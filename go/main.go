@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -46,6 +47,34 @@ func IsIsogram(word string) bool {
 	}
 	return true // if all letters are unique
 }
+
+//Reverse Function
+func Reverse(word string) string {
+	result := ""
+	for _, letter := range word {
+		result = string(letter) + result
+	}
+	return result
+}
+
+//Raindrops
+func Convert(num int) string {
+	result := ""
+	if num%3 == 0 {
+		result = "Pling"
+	}
+	if num%5 == 0 {
+		result = result + "Plang"
+	}
+	if num%7 == 0 {
+		result = result + "Plong"
+	}
+	if num%3 != 0 && num%5 != 0 && num%7 != 0 {
+		result = strconv.Itoa(num)
+	}
+	
+	return result
+}
 func main() {
 	st, err := Distance("AAGT", "AAGDB")
 	if err != nil {
@@ -58,4 +87,13 @@ func main() {
 	result := IsIsogram(word)
 
 	fmt.Printf("Word %v is %v", word, result)
+
+	//call reverse function
+	ww := "SweetGirl"
+	reversed := Reverse(ww)
+	fmt.Printf("Reversed string for %s is %s", ww, reversed)
+
+	//call convert for raindrops function
+	raindropsResult := Convert(34)
+	fmt.Println("Raindrops : ", raindropsResult)
 }
