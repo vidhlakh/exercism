@@ -72,9 +72,31 @@ func Convert(num int) string {
 	if num%3 != 0 && num%5 != 0 && num%7 != 0 {
 		result = strconv.Itoa(num)
 	}
-	
+
 	return result
 }
+
+//bob
+func Hey(remark string) string {
+	remark = strings.TrimSpace(remark)
+	fmt.Println(remark)
+	if remark == "" {
+		return "Fine. Be that way!"
+
+	} else if strings.ToUpper(remark) == remark && strings.ToUpper(remark) != strings.ToLower(remark) {
+		if strings.HasSuffix(remark, "?") {
+			return "Calm down, I know what I'm doing!"
+		}
+		return "Whoa, chill out!"
+
+	} else if strings.HasSuffix(remark, "?") {
+		return "Sure."
+
+	} else {
+		return "Whatever."
+	}
+}
+
 func main() {
 	st, err := Distance("AAGT", "AAGDB")
 	if err != nil {
@@ -96,4 +118,8 @@ func main() {
 	//call convert for raindrops function
 	raindropsResult := Convert(34)
 	fmt.Println("Raindrops : ", raindropsResult)
+
+	// call bob's hey
+	bobResponse := Hey("Tom-ay-to, tom-aaaah-to.")
+	fmt.Println("Bob response", bobResponse)
 }
