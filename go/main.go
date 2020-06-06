@@ -3,11 +3,12 @@ package main
 import (
 	"errors"
 	"fmt"
+	"regexp"
 	"strconv"
 	"strings"
 )
 
-//Hamming
+// Distance provide difference b/w 2 DNA strands
 func Distance(a, b string) (int, error) {
 	count := 0 //Int Variable to Count the Difference
 
@@ -25,7 +26,7 @@ func Distance(a, b string) (int, error) {
 
 }
 
-// Isogram
+// IsIsogram finds whether word is an isogram with no repetitions
 func IsIsogram(word string) bool {
 	uniqueLetters := map[rune]bool{}
 	/*Writing in multiple lines
@@ -40,9 +41,6 @@ func IsIsogram(word string) bool {
 
 		if uniqueLetters[letter] == true {
 			return false //return false as duplicates are found
-		} else {
-			uniqueLetters[letter] = true
-
 		}
 	}
 	return true // if all letters are unique
@@ -57,7 +55,7 @@ func Reverse(word string) string {
 	return result
 }
 
-//Raindrops
+// Convert print Plint plong plang depending on th e number
 func Convert(num int) string {
 	result := ""
 	if num%3 == 0 {
@@ -76,7 +74,7 @@ func Convert(num int) string {
 	return result
 }
 
-//bob
+// Hey respons s according to questions
 func Hey(remark string) string {
 	remark = strings.TrimSpace(remark)
 	fmt.Println(remark)
@@ -97,6 +95,17 @@ func Hey(remark string) string {
 	}
 }
 
+// Abbreviate creates acronym for the words
+func Abbreviate(s string) string {
+	words := strings.Fields(strings.Replace(strings.Replace(s, "-", " ", -1), "_", "", -1))
+	fmt.Println("words ", words)
+	acronym := ""
+	for _, word := range words {
+		acronym += string(word[0])
+	}
+
+	return acronym
+}
 func main() {
 	st, err := Distance("AAGT", "AAGDB")
 	if err != nil {
@@ -122,4 +131,18 @@ func main() {
 	// call bob's hey
 	bobResponse := Hey("Tom-ay-to, tom-aaaah-to.")
 	fmt.Println("Bob response", bobResponse)
+
+	// Acronym for Halley's Comet
+	acronym := Abbreviate("Halley's - Comet")
+	fmt.Println("Acronym:", acronym)
+	// Alternative fo my Acronym function
+	// Good use of Regex
+	pattern := regexp.MustCompile("[\\s_-]+")
+	tokens := pattern.Split("vidhya lakshmdf -Gsfd - Dvf _Done", -1)
+	fmt.Println(tokens)
+	abb := ""
+	for _, token := range tokens {
+		abb += string(token[0])
+	}
+	fmt.Println(abb)
 }
