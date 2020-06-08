@@ -20,8 +20,8 @@ func ConcurrentFrequency(allLang []string) FreqMap {
 
 	for _, input := range allLang {
 
-		go func(text string) {
-			msg <- Frequency(text)
+		go func(input string) {
+			msg <- Frequency(input)
 		}(input)
 	}
 	result := make(FreqMap)
