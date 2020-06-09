@@ -151,5 +151,23 @@ func main() {
 	for _, word := range given {
 		fmt.Println(word)
 	}
+	//map ispangram
+	alphabet := "abcdefghijklmnopqrstuvwxyz"
+	alpha := make(map[string]int)
+	for _, a := range alphabet {
+		alpha[string(a)]++
+	}
+	fmt.Println("map alpha:", alpha)
+	inputString := strings.ToLower("the quickk brown fox jumps over the lazy dog")
+	for _, letter := range inputString {
+		if alpha[string(letter)] > 1 {
+			alpha[string(letter)]--
+		} else {
+			delete(alpha, string(letter))
+		}
+	}
+	if len(alpha) == 0 {
+		fmt.Println("map alpha:", alpha)
+	}
 
 }
