@@ -146,4 +146,10 @@ func main() {
 	}
 	fmt.Println(abb)
 
+	// []string
+	given := []string{"Cat", "Dofg", "ffsdf"}
+	for _, word := range given {
+		fmt.Println(word)
+	}
+
 }
