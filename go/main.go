@@ -169,5 +169,11 @@ func main() {
 	if len(alpha) == 0 {
 		fmt.Println("map alpha:", alpha)
 	}
+	var anything []interface{}
+	var stringList []string
+	stringList = append(stringList, "first word")
+	stringList = append(stringList, "Second word")
+	stringList = append(stringList, "Third word")
+	anything = stringList
 
 }
