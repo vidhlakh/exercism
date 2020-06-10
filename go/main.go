@@ -6,7 +6,11 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"unicode"
 )
+
+//Frequency is int array with size 26 for holding english letters
+type Frequency [26]int
 
 // Distance provide difference b/w 2 DNA strands
 func Distance(a, b string) (int, error) {
@@ -106,6 +110,17 @@ func Abbreviate(s string) string {
 
 	return acronym
 }
+
+//Count the unicode letter. We index for 26 letter. Increment the index for letter found
+func Count(word string) (f Frequency) {
+	for _, char := range word {
+		if unicode.IsLetter(char) {
+			f[char-'a']++
+		}
+	}
+
+	return
+}
 func main() {
 	st, err := Distance("AAGT", "AAGDB")
 	if err != nil {
@@ -169,11 +184,24 @@ func main() {
 	if len(alpha) == 0 {
 		fmt.Println("map alpha:", alpha)
 	}
-	var anything []interface{}
-	var stringList []string
-	stringList = append(stringList, "first word")
-	stringList = append(stringList, "Second word")
-	stringList = append(stringList, "Third word")
-	anything = stringList
+	//Anagram
+	subject := "master"
+	candidates := []string{"stream", "pigeon", "maters"}
+	subjectLower := strings.ToLower(subject)
+	var anagram []string
+	countSubject := Count(subjectLower)
 
+	for _, word := range candidates {
+		wordLower := strings.ToLower(word)
+		if len(subject) != len(wordLower) {
+			continue
+		}
+		countCandidate := Count(wordLower)
+
+		if countSubject == countCandidate {
+			anagram = append(anagram, word)
+		}
+
+	}
+	fmt.Println("Anagram ", anagram)
 }
